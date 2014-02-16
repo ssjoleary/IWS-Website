@@ -1,0 +1,9 @@
+{% if species_list %}
+	<ul>
+	{% for species in species_list %}
+		<li><a href="{% url 'speciesguide:detail' species.id %}">{{ species.specname }}</a></li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No species are available</p>
+{% endif %}

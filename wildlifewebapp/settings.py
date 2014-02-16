@@ -35,6 +35,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sightings',
+    'speciesguide',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,10 +57,14 @@ WSGI_APPLICATION = 'wildlifewebapp.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'db277divi057an',
+    'HOST': 'ec2-54-204-44-31.compute-1.amazonaws.com',
+    'PORT': 5432,
+    'USER': 'jbwcugwapazksk',
+    'PASSWORD': 'gHmAj_Qa1O0Cefjdf4_85J1qz6'
+  }
 }
 
 # Internationalization
@@ -87,8 +93,8 @@ STATICFILES_DIRS = (
 
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+#import dj_database_url
+#DATABASES['default'] = dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
