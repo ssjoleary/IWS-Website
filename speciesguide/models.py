@@ -12,5 +12,6 @@ class Species(models.Model):
 	specspecies = models.CharField(max_length=200)
 	speccommonname = models.CharField(max_length=200)
 
+
 	def __unicode__(self):
 		return self.specname 
