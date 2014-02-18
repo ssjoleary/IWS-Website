@@ -12,7 +12,7 @@ class IndexView(generic.ListView):
 
 	def get_queryset(self):
 		# Return the last five.
-		return Species.objects.order_by('specname')[:5]
+		return Species.objects.order_by('specname')[:25]
 
 class DetailView(generic.DetailView):
 	model = Species
