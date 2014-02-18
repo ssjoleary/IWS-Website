@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'sightings',
     'speciesguide',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (
