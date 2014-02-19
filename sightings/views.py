@@ -4,6 +4,9 @@ from django.core.urlresolvers import reverse
 
 from sightings.models import Sighting
 
+from django.utils import simplejson
+from django.http import HttpResponse
+
 # Create your views here.
 
 class IndexView(generic.ListView):
@@ -17,3 +20,11 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Sighting
     template_name = 'sightings/detail.html'
+
+def get_sighting(request):
+    result = []
+
+    result.append({"User":"Sam O'Leary"})
+    result.append({"Occupation":"Student"})
+
+    return HttpResponse(simplejson.dumps(result), mimetype='text/plain')
