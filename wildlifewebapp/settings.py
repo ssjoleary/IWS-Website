@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'sightings',
     'speciesguide',
     'south',
+    'homepage',
 )
 
 MIDDLEWARE_CLASSES = (
