@@ -27,4 +27,4 @@ def get_sighting(request):
     result.append({"User":"Sam O'Leary"})
     result.append({"Occupation":"Student"})
 
-    return HttpResponse(simplejson.dumps(result), mimetype='text/plain')
+    return HttpResponse(simplejson.dumps(result), mimetype='application/json')
