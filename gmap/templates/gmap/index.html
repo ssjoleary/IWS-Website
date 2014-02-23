@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Irelands Wildlife Map</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta charset="utf-8">
+  <style type="text/css">
+  html { height: 100% }
+  body { height: 100%; margin: 0; padding: 0 }
+  #map-canvas { height: 100% }
+  </style>
+  <script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?AIzaSyBTsfofCT6qPLoCHQ6WBanl8neYws0toJA&sensor=false">
+  </script>
+  <script type="text/javascript">
+  function initialize() {
+
+    var mapOptions = {
+      center: new google.maps.LatLng(53.41608, -7.93396),
+      zoom: 7
+    };
+    var map = new google.maps.Map(document.getElementById("map-canvas"),
+      mapOptions); 
+
+    {% if sightings_list %}
+    {% for sighting in sightings_list %}
+      var sightingLatLng = new google.maps.LatLng({{ sighting.latitude }}, {{sighting.longitude}})
+       // To add the marker to the map, use the 'map' property
+      var marker = new google.maps.Marker({
+      position: sightingLatLng,
+      map: map,
+      title:"{{ sighting.species }}"
+      });
+      {% endfor %}
+    {% endif %}
+
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+<body>
+  <div id="map-canvas"/>
+</body>
+</html>
