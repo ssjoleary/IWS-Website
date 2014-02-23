@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'speciesguide',
     'south',
     'homepage',
+    'gmap',
 )
 
 MIDDLEWARE_CLASSES = (

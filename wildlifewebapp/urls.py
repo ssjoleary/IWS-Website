@@ -10,5 +10,6 @@ urlpatterns = patterns('',
 
     url(r'^speciesguide/', include('speciesguide.urls', namespace="speciesguide")),
     url(r'^sightings/', include('sightings.urls', namespace="sightings")),
+    url(r'^gmap/', include('gmap.urls', namespace="gmap")),
     url(r'^admin/', include(admin.site.urls)),
 )
