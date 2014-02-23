@@ -1,13 +1,13 @@
-from django.shortcuts import render
+import json
+from django.core import serializers
 from django.views import generic
-from django.core.urlresolvers import reverse
 
 from sightings.models import Sighting
 
-from django.utils import simplejson
 from django.http import HttpResponse
 
 # Create your views here.
+
 
 class IndexView(generic.ListView):
     template_name = 'sightings/index.html'
@@ -17,14 +17,14 @@ class IndexView(generic.ListView):
         # Return the last five.
         return Sighting.objects.order_by('sub_date')[:25]
 
+
 class DetailView(generic.DetailView):
     model = Sighting
     template_name = 'sightings/detail.html'
 
+
 def get_sighting(request):
-    result = []
+    #result = [{"User": "Sam O'Leary"}, {"Occupation": "Student"}]
+    result = serializers.serialize('json', Sighting.objects.all())
 
-    result.append({"User":"Sam O'Leary"})
-    result.append({"Occupation":"Student"})
-
-    return HttpResponse(simplejson.dumps(result), mimetype='application/json')
+    return HttpResponse(result, mimetype='application/json')
