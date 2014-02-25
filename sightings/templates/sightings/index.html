@@ -1,9 +1,13 @@
-{% if sightings_list %}
-	<ul>
-	{% for sighting in sightings_list %}
-		<li><a href="{% url 'sightings:detail' sighting.id %}">{{ sighting.sub_date }}</a></li>
-	{% endfor %}
-	</ul>
-{% else %}
-	<p>No sightings are available</p>
-{% endif %}
+{% extends "wildlifewebapp/base.html" %}
+
+{% block content %}
+    {% if sightings_list %}
+        <ul>
+            {% for sighting in sightings_list %}
+                <li><a href="{% url 'sightings:detail' sighting.id %}">{{ sighting.sub_date }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No sightings are available</p>
+    {% endif %}
+{% endblock %}
