@@ -15,7 +15,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         # Return the last five.
-        return Sighting.objects.order_by('sub_date')[:25]
+        return Sighting.objects.order_by('pk')[:25]
 
 
 class DetailView(generic.DetailView):
@@ -24,7 +24,5 @@ class DetailView(generic.DetailView):
 
 
 def get_sighting(request):
-    #result = [{"User": "Sam O'Leary"}, {"Occupation": "Student"}]
-    result = serializers.serialize('json', Sighting.objects.all())
-
+    result = serializers.serialize('json', Sighting.objects.all(), use_natural_keys=True)
     return HttpResponse(result, mimetype='application/json')
