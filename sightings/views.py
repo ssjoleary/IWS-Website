@@ -5,6 +5,7 @@ from django.views import generic
 from sightings.models import Sighting
 
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -25,4 +26,15 @@ class DetailView(generic.DetailView):
 
 def get_sighting(request):
     result = serializers.serialize('json', Sighting.objects.all(), use_natural_keys=True)
+    return HttpResponse(result, mimetype='application/json')
+
+
+@csrf_exempt
+def get_specific_sighting(request):
+    if request.is_ajax():
+        if request.method == 'POST':
+            searchquery = json.loads(request.body)
+            result = serializers.serialize('json', Sighting.objects.filter(location__contains=searchquery['county']),
+                                           use_natural_keys=True)
+
     return HttpResponse(result, mimetype='application/json')
