@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
 
     url(r'^getsighting/$', views.get_sighting, name='get_sighting'),
+    url(r'^getspecificsighting/$', views.get_specific_sighting, name='get_specific_sighting'),
     )
