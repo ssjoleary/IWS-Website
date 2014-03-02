@@ -3,6 +3,7 @@ from django.core import serializers
 from django.views import generic
 
 from sightings.models import Sighting
+from speciesguide.models import Species
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -15,7 +16,7 @@ class IndexView(generic.ListView):
     context_object_name = 'sightings_list'
 
     def get_queryset(self):
-        # Return the last five.
+        # Return the last twenty five.
         return Sighting.objects.order_by('pk')[:25]
 
 
@@ -31,10 +32,26 @@ def get_sighting(request):
 
 @csrf_exempt
 def get_specific_sighting(request):
-    if request.is_ajax():
-        if request.method == 'POST':
-            searchquery = json.loads(request.body)
-            result = serializers.serialize('json', Sighting.objects.filter(location__contains=searchquery['county']),
-                                           use_natural_keys=True)
+    if request.is_ajax() and request.method == 'POST':
+        searchquery = json.loads(request.body)
 
-    return HttpResponse(result, mimetype='application/json')
+        if searchquery['county'] == 'Any...' and searchquery['species'] == 'Any...':
+            result = serializers.serialize('json', Sighting.objects.all(), use_natural_keys=True)
+
+        elif searchquery['county'] == 'Any...' and searchquery['species'] != 'Any...':
+            speciesItem = Species.objects.get(specname__contains=searchquery['species'])
+            speciesPK = speciesItem.pk
+            result = serializers.serialize('json', Sighting.objects.filter(species__contains=speciesPK)
+            , use_natural_keys=True)
+
+        elif searchquery['county'] != 'Any...' and searchquery['species'] == 'Any...':
+            result = serializers.serialize('json', Sighting.objects.filter(location__contains=searchquery['county'])
+            , use_natural_keys=True)
+
+        elif searchquery['county'] != 'Any...' and searchquery['species'] != 'Any...':
+            speciesItem = Species.objects.get(specname__contains=searchquery['species'])
+            speciesPK = speciesItem.pk
+            result = serializers.serialize('json', Sighting.objects.filter(species__exact=speciesPK
+            ).filter(location__contains=searchquery['county']), use_natural_keys=True)
+
+        return HttpResponse(result, mimetype='application/json')

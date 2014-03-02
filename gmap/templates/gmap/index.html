@@ -26,6 +26,7 @@
 
 {% block content %}
     <div class="row">
+        <!-- Panel Group -->
         <div class="col-md-4">
             <div class="panel-group" id="accordian">
                 <div class="panel panel-default">
@@ -40,11 +41,9 @@
                         <div class="panel-body in">
                             <div class="dropdown">
                                 <label for="countySearch">County</label>
-                                <button class="btn dropdown-toggle" id="dropdownInput" name="recordinput" data-toggle="dropdown">
-                                    Please select one
-                                    <span class="caret"></span>
+                                <button class="btn dropdown-toggle" id="dropdownCountyInput" name="recordinput" data-toggle="dropdown">Any...<span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" id="dropdownSearch">
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" id="dropdownCountySearch">
                                     <li><a href="#">Any...</a></li>
                                     <li><a href="#">Antrim</a></li>
                                     <li><a href="#">Clare</a></li>
@@ -62,6 +61,40 @@
                                     <li><a href="#">Wicklow</a></li>
                                 </ul>
                             </div>
+                            <div class="dropdown">
+                                <label for="countySearch">Species</label>
+                                <button class="btn dropdown-toggle" id="dropdownSpeciesInput" name="recordinput" data-toggle="dropdown">Any...<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" id="dropdownSpeciesSearch">
+                                    <li><a href="#">Any...</a></li>
+                                    <li><a href="#">atlantic white-sided dolphin</a></li>
+                                    <li><a href="#">beluga whale</a></li>
+                                    <li><a href="#">blue whale</a></li>
+                                    <li><a href="#">bottlenose dolphin</a></li>
+                                    <li><a href="#">common dolphin</a></li>
+                                    <li><a href="#">Cuvier's beaked whale</a></li>
+                                    <li><a href="#">false killer whale</a></li>
+                                    <li><a href="#">fin whale</a></li>
+                                    <li><a href="#">Gervais' beaked whale</a></li>
+                                    <li><a href="#">harbour porpoise</a></li>
+                                    <li><a href="#">humpback whale</a></li>
+                                    <li><a href="#">Long-finned pilot whale</a></li>
+                                    <li><a href="#">minke whale</a></li>
+                                    <li><a href="#">northern bottlenose whale</a></li>
+                                    <li><a href="#">northern right whale</a></li>
+                                    <li><a href="#">pygmy sperm whale</a></li>
+                                    <li><a href="#">Risso's dolphin</a></li>
+                                    <li><a href="#">sei whale</a></li>
+                                    <li><a href="#">Sowerby's beaked whale</a></li>
+                                    <li><a href="#">sperm whale</a></li>
+                                    <li><a href="#">striped dolphin</a></li>
+                                    <li><a href="#">True's beaked whale</a></li>
+                                    <li><a href="#">Unidentified Whale or Dolphin</a></li>
+                                    <li><a href="#">white-beaked dolphin</a></li>
+                                </ul>
+                            </div>
+                            <button type="button" class="btn btn-primary" data-toggle="button" id="searchbtn">Search!</button>
+
                             <!--<div class="panel-group" id="innerAccordian">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
@@ -114,25 +147,25 @@
         <!-- Table -->
         <div class="col-md-4 table-scroll">
             <div class="table-responsive">
-            <table class="table table-striped" >
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Species</th>
-                    <th>Animals</th>
-                    <th>Location</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
-                </tr>
-                </thead>
-                <tbody id="sightingsTablebody">
+                <table class="table" >
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Species</th>
+                        <th>Animals</th>
+                        <th>Location</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                    </tr>
+                    </thead>
+                    <tbody id="sightingsTablebody">
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-    <!-- Google Map -->
-    <div class="col-md-4" id="map-canvas-div"><div id="map-canvas"/></div>
+        <!-- Google Map -->
+        <div class="col-md-4" id="map-canvas-div"><div id="map-canvas"/></div>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -208,7 +241,6 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
-
                 </div>
             </div>
         </div>

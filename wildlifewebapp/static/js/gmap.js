@@ -72,6 +72,12 @@ $(function($,W,D,undefined)
                         $('<td>').text(element.fields.longitude)
                     ).appendTo('#sightingsTablebody')
                 });
+                /*$.each(data, function(index, element) {
+                 var $dropdownData = $('<li>').append(
+                 $('<a href="#">').text(element.fields.species)
+                 ).append('</a></li>'
+                 ).appendTo('#dropdownSpeciesSearch')
+                 });*/
 
             });
             this.setupEventHandlers();
@@ -99,9 +105,11 @@ $(function($,W,D,undefined)
                 _this.uploadImage();
             });
 
-            $('#dropdownSearch li a').on('click', function()
+            $('#searchbtn').on('click', function()
             {
-                var search = { county: $(this).text() };
+                var countySearch = $('#dropdownCountyInput').text().trim();
+                var speciesSearch = $('#dropdownSpeciesInput').text().trim();
+                var search = { county: countySearch, species: speciesSearch };
                 $.ajax({
                     url: '/sightings/getspecificsighting/',
                     type: 'POST',
@@ -110,6 +118,10 @@ $(function($,W,D,undefined)
                     dataType: 'json',
                     success: function(data)
                     {
+                        if(data.length == 0) {
+                            alert('No result matched your query!');
+                            return;
+                        }
                         clearMarkers();
                         $('#sightingsTablebody').empty();
                         $.each(data, function(index, element){
@@ -154,6 +166,7 @@ $(function($,W,D,undefined)
                             ).appendTo('#sightingsTablebody')
                         });
                     }
+
                 });
             })
 
