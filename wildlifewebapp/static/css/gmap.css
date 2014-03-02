@@ -1,4 +1,5 @@
-.table-scroll { width: 30%; height: 100%;
+.table-scroll {
+    height: 100%;
     overflow: auto }
 
 table {
