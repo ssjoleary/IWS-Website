@@ -41,7 +41,7 @@ def get_specific_sighting(request):
         elif searchquery['county'] == 'Any...' and searchquery['species'] != 'Any...':
             speciesItem = Species.objects.get(specname__contains=searchquery['species'])
             speciesPK = speciesItem.pk
-            result = serializers.serialize('json', Sighting.objects.filter(species__contains=speciesPK)
+            result = serializers.serialize('json', Sighting.objects.filter(species__exact=speciesPK)
             , use_natural_keys=True)
 
         elif searchquery['county'] != 'Any...' and searchquery['species'] == 'Any...':
