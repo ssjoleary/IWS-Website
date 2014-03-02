@@ -61,14 +61,14 @@ WSGI_APPLICATION = 'wildlifewebapp.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'db277divi057an',
-    'HOST': 'ec2-54-204-44-31.compute-1.amazonaws.com',
-    'PORT': 5432,
-    'USER': 'jbwcugwapazksk',
-    'PASSWORD': 'gHmAj_Qa1O0Cefjdf4_85J1qz6'
-  }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'db277divi057an',
+        'HOST': 'ec2-54-204-44-31.compute-1.amazonaws.com',
+        'PORT': 5432,
+        'USER': 'jbwcugwapazksk',
+        'PASSWORD': 'gHmAj_Qa1O0Cefjdf4_85J1qz6'
+    }
 }
 
 # Internationalization
@@ -105,3 +105,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
+
+# Redirect users who are not logged in from restricted content
+LOGIN_URL = '/'
