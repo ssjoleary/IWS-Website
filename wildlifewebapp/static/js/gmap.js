@@ -22,7 +22,7 @@ $(function($,W,D,undefined)
         init: function(){
             mapOptions = {
                 center: new google.maps.LatLng(53.41608, -7.93396),
-                zoom: 6
+                zoom: 7
             };
             map = new google.maps.Map(document.getElementById("map-canvas"),
                 mapOptions);
@@ -58,7 +58,7 @@ $(function($,W,D,undefined)
                     google.maps.event.addListener(infowindow, 'closeclick', function() {
                         infowindow.close(map,marker)
                         map.panTo(centerLatLng)
-                        map.setZoom(6)
+                        map.setZoom(7)
                     });
                     markers.push(marker)
                 });
