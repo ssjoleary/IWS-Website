@@ -32,7 +32,7 @@ def get_sighting(request):
 
 @csrf_exempt
 def get_specific_sighting(request):
-    if request.is_ajax() and request.method == 'POST':
+    if request.method == 'POST':
         searchquery = json.loads(request.body)
 
         if searchquery['county'] == 'Any...' and searchquery['species'] == 'Any...':
