@@ -10,4 +10,5 @@ urlpatterns = patterns('',
 
     url(r'^getsighting/$', views.get_sighting, name='get_sighting'),
     url(r'^getspecificsighting/$', views.get_specific_sighting, name='get_specific_sighting'),
+    url(r'^postsighting/$', views.post_sighting, name='post_sighting'),
     )

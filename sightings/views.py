@@ -7,6 +7,7 @@ from speciesguide.models import Species
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.utils import simplejson
 
 # Create your views here.
 
@@ -55,3 +56,20 @@ def get_specific_sighting(request):
             ).filter(location__contains=searchquery['county']), use_natural_keys=True)
 
         return HttpResponse(result, mimetype='application/json')
+
+
+@csrf_exempt
+def post_sighting(request):
+    if request.method == 'POST':
+        searchquery = json.loads(request.body)
+
+        speciesItem = Species.objects.get(specname__contains=searchquery['species'])
+        speciesPK = speciesItem.pk
+        sighting = Sighting.objects.create(sub_date=searchquery['date'], species=speciesPK, animals=searchquery['animals'],
+                                           location=searchquery['location'], latitude=searchquery['lat'], longitude=searchquery['lng'],
+                                           name=searchquery['name'])
+        sighting.save()
+
+        data_to_dump = {'success': 'success'}
+        data = simplejson.dumps(data_to_dump)
+        return HttpResponse(data, mimetype='application/json')
