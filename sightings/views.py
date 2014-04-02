@@ -64,8 +64,8 @@ def post_sighting(request):
         searchquery = json.loads(request.body)
 
         speciesItem = Species.objects.get(specname__contains=searchquery['species'])
-        speciesPK = speciesItem.pk
-        sighting = Sighting(sub_date=searchquery['date'], species=speciesPK, animals=searchquery['animals'],
+        #speciesPK = speciesItem.pk
+        sighting = Sighting(sub_date=searchquery['date'], species=speciesItem, animals=searchquery['animals'],
                             location=searchquery['location'], latitude=searchquery['lat'], longitude=searchquery['lng'],
                             name=searchquery['name'])
         sighting.save()
