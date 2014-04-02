@@ -43,11 +43,11 @@ def get_specific_sighting(request):
             speciesItem = Species.objects.get(specname__contains=searchquery['species'])
             speciesPK = speciesItem.pk
             result = serializers.serialize('json', Sighting.objects.filter(species__exact=speciesPK)
-            , use_natural_keys=True)
+                , use_natural_keys=True)
 
         elif searchquery['county'] != 'Any...' and searchquery['species'] == 'Any...':
             result = serializers.serialize('json', Sighting.objects.filter(location__contains=searchquery['county'])
-            , use_natural_keys=True)
+                , use_natural_keys=True)
 
         elif searchquery['county'] != 'Any...' and searchquery['species'] != 'Any...':
             speciesItem = Species.objects.get(specname__contains=searchquery['species'])
@@ -65,11 +65,13 @@ def post_sighting(request):
 
         speciesItem = Species.objects.get(specname__contains=searchquery['species'])
         speciesPK = speciesItem.pk
-        sighting = Sighting.objects.create(sub_date=searchquery['date'], species=speciesPK, animals=searchquery['animals'],
-                                           location=searchquery['location'], latitude=searchquery['lat'], longitude=searchquery['lng'],
-                                           name=searchquery['name'])
+        sighting = Sighting(sub_date=searchquery['date'], species=speciesPK, animals=searchquery['animals'],
+                            location=searchquery['location'], latitude=searchquery['lat'], longitude=searchquery['lng'],
+                            name=searchquery['name'])
         sighting.save()
 
-        data_to_dump = {'success': 'success'}
-        data = simplejson.dumps(data_to_dump)
-        return HttpResponse(data, mimetype='application/json')
+        #data_to_dump = {'success': 'success'}
+        #data = simplejson.dumps(data_to_dump)
+        #return HttpResponse(data, mimetype='application/json')
+        result = serializers.serialize('json', Sighting.objects.all(), use_natural_keys=True)
+        return HttpResponse(result, mimetype='application/json')
