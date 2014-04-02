@@ -122,8 +122,8 @@ $(function($,W,D,undefined)
                             alert('No result matched your query!');
                             return;
                         }
-                        clearMarkers();
-                        $('#sightingsTablebody').empty();
+
+
                         $.each(data, function(index, element){
                             var sightingLatLng = new google.maps.LatLng(element.fields.latitude, element.fields.longitude)
                             // To add the marker to the map, use the 'map' property
