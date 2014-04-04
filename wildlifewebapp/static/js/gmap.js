@@ -141,7 +141,7 @@ $(function($,W,D,undefined)
                                 '<h2><small>Location:</small></h2><p>'+element.fields.location+'</p>'+
                                 '<h2><small>Latitude:</small></h2><p>'+element.fields.latitude+'</p>'+
                                 '<h2><small>Longitude:</small></h2><p>'+element.fields.longitude+'</p>'+
-                                '<a href="'+element.fields.image+'"><img src="'+element.fields.image+'.jpg'+'" title="Hosted by imgur.com" /></a>';
+                                '<h2><small>Image:</small></h2><a href="'+element.fields.image+'"><img src="'+element.fields.image+'.jpg'+'" title="Hosted by imgur.com" /></a>';
 
                             var infowindow = new google.maps.InfoWindow({
                                 content: contentString
