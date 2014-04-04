@@ -12,6 +12,7 @@ class Sighting(models.Model):
     latitude = models.DecimalField(max_digits=5, decimal_places=3, default=0)
     longitude = models.DecimalField(max_digits=5, decimal_places=3, default=0)
     name = models.CharField(max_length=200, default='observer name')
+    imageurl = models.CharField(max_length=200, default='image')
 
     def __unicode__(self):
         return self.location

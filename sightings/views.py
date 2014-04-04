@@ -67,11 +67,15 @@ def post_sighting(request):
         #speciesPK = speciesItem.pk
         sighting = Sighting(sub_date=searchquery['date'], species=speciesItem, animals=searchquery['animals'],
                             location=searchquery['location'], latitude=searchquery['lat'], longitude=searchquery['lng'],
-                            name=searchquery['name'])
+                            name=searchquery['name'], imageurl=searchquery['imageurl'])
         sighting.save()
 
-        #data_to_dump = {'success': 'success'}
-        #data = simplejson.dumps(data_to_dump)
-        #return HttpResponse(data, mimetype='application/json')
-        result = serializers.serialize('json', Sighting.objects.all(), use_natural_keys=True)
-        return HttpResponse(result, mimetype='application/json')
+        data_to_dump = {'success': 'success'}
+        data = simplejson.dumps(data_to_dump)
+        return HttpResponse(data, mimetype='application/json')
+        #result = serializers.serialize('json', Sighting.objects.all(), use_natural_keys=True)
+        #return HttpResponse(result, mimetype='application/json')
+    else:
+        data_to_dump = {'success': 'failure'}
+        data = simplejson.dumps(data_to_dump)
+        return HttpResponse(data, mimetype='application/json')
