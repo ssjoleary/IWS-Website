@@ -48,7 +48,7 @@ $(function($,W,D,undefined)
                         '<h2><small>Latitude:</small></h2><p>'+element.fields.latitude+'</p>'+
                         '<h2><small>Longitude:</small></h2><p>'+element.fields.longitude+'</p>'+
                         '<h2><small>Observer:</small></h2><p>'+element.fields.name+'</p>'+
-                        '<h2><small>Image:</small></h2><a href="'+element.fields.image+'.jpg.'+'"><img src="'+element.fields.image+'.jpg'+'" title="Hosted by imgur.com" /></a>';
+                        '<h2><small>Image:</small></h2><a href="http://imgur.com/'+element.fields.imageurl+'"><img src="http://i.imgur.com/'+element.fields.imageurl+'.jpg'+'" title="Hosted by imgur.com" /></a>';
 
                     var infowindow = new google.maps.InfoWindow({
                         content: contentString
@@ -143,7 +143,7 @@ $(function($,W,D,undefined)
                                 '<h2><small>Latitude:</small></h2><p>'+element.fields.latitude+'</p>'+
                                 '<h2><small>Longitude:</small></h2><p>'+element.fields.longitude+'</p>'+
                                 '<h2><small>Observer:</small></h2><p>'+element.fields.name+'</p>'+
-                                '<h2><small>Image:</small></h2><a href="'+element.fields.imageurl+'.jpg'+'"><img src="'+element.fields.imageurl+'.jpg'+'" title="Hosted by imgur.com" /></a>';
+                                '<h2><small>Image:</small></h2><a href="http://imgur.com/'+element.fields.imageurl+'"><img src="http://i.imgur.com/'+element.fields.imageurl+'.jpg'+'" title="Hosted by imgur.com" /></a>';
 
                             var infowindow = new google.maps.InfoWindow({
                                 content: contentString
